@@ -1,7 +1,7 @@
 let player;
 let currentVolume = 50;
+let progressInterval;
 
-// Extrae el videoId desde una URL de YouTube
 function getVideoId(url) {
   const match = url.match(
     /(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/ 
@@ -33,6 +33,7 @@ document.getElementById("load").onclick = () => {
 
   player.loadVideoById(videoId);
   player.setVolume(currentVolume);
+  startProgress();
 };
 
 document.getElementById("play").onclick = () => {
@@ -44,11 +45,7 @@ document.getElementById("pause").onclick = () => {
 };
 
 document.getElementById("mute").onclick = () => {
-  if (player.isMuted()) {
-    player.unMute();
-  } else {
-    player.mute();
-  }
+  player.isMuted() ? player.unMute() : player.mute();
 };
 
 document.getElementById("volUp").onclick = () => {
@@ -60,3 +57,17 @@ document.getElementById("volDown").onclick = () => {
   currentVolume = Math.max(0, currentVolume - 10);
   player.setVolume(currentVolume);
 };
+
+function startProgress() {
+  clearInterval(progressInterval);
+
+  progressInterval = setInterval(() => {
+    if (!player || !player.getDuration) return;
+
+    const current = player.getCurrentTime();
+    const duration = player.getDuration();
+    const percent = (current / duration) * 100;
+
+    document.getElementById("progress").style.width = `${percent}%`;
+  }, 500);
+}
