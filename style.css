@@ -1,0 +1,56 @@
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.player-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.player-card h2 {
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #667eea;
+  color: white;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+/* El video queda oculto */
+.hidden-player {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
